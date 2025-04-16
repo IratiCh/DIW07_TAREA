@@ -1,0 +1,330 @@
+/* General */
+body {
+  font-family: sans-serif;
+  margin: 0;
+  padding: 0;
+  background: #fff4f4;
+  color: #362d2d;
+}
+
+header {
+  color: #dd174e;
+  text-align: center;
+  padding: 2rem 1rem;
+}
+
+h1 {
+  position: relative;
+  display: inline-block;
+}
+
+/* Línea animada */
+h1::after {
+  content: "";
+  position: absolute;
+  bottom: -5px;
+  left: 50%;
+  width: 0;
+  height: 3px;
+  background-color: #f76c6c;
+  transition: width 0.6s ease, left 0.6s ease;
+}
+
+/* Animación al cargar */
+@keyframes expand-line {
+  0% {
+    width: 0;
+    left: 50%;
+  }
+  100% {
+    width: 100%;
+    left: 0;
+  }
+}
+
+/* Aplicar la animación */
+h1::after {
+  animation: expand-line 0.8s ease forwards;
+}
+
+.presentacion {
+  padding: 2rem 1rem;
+  text-align: center;
+  background: #f5e7eb;
+  margin-left: 15%;
+  margin-right: 15%;
+  border-radius: 15px;
+}
+
+.presentacion p {
+  margin-left: 15%;
+  margin-right: 15%;
+  font-size: 1.2rem;
+}
+
+/* Galería */
+.galeria {
+  padding: 2rem 1rem;
+  color: #dd174e;
+  text-align: center;
+}
+
+.mascotas {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  align-items: center;
+}
+
+.mascota svg {
+  width: 150px;
+  height: auto;
+  animation: entrada 1s ease forwards;
+  opacity: 0;
+}
+
+@keyframes entrada {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* BOTON */
+
+.boton {
+  text-align: center;
+}
+
+/* Botón */
+.btn-animado {
+  position: relative;
+  overflow: hidden;
+  background: #a3d9a5;
+  color: white;
+  padding: 1rem 2rem;
+  font-size: 1.2rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  z-index: 1;
+  transition: color 0.3s ease;
+}
+
+.btn-animado::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background-color: #f76c6c;
+  transition: left 0.5s ease-in-out;
+  z-index: -1;
+}
+
+/* Hover: color avanza de izq a der */
+.btn-animado:hover::before {
+  left: 0;
+}
+
+/* Color del texto encima siempre */
+.btn-animado {
+  position: relative;
+  z-index: 1;
+}
+
+@media (min-width: 600px) {
+  .mascotas {
+    flex-direction: row;
+    justify-content: center;
+  }
+}
+
+/* PERRO */
+
+svg .lengua,
+svg .ojo-cerrado {
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+svg .ojo-abierto {
+  opacity: 1;
+  transition: opacity 0.3s;
+}
+
+/* Animación lengua */
+@keyframes lengua {
+  0%,
+  25% {
+    opacity: 0;
+  }
+  30%,
+  50% {
+    opacity: 1;
+  }
+  55%,
+  100% {
+    opacity: 0;
+  }
+}
+
+.lengua {
+  animation: lengua 4s infinite steps(1);
+}
+
+/* Animación ojo cerrado */
+@keyframes ojoCerrado {
+  0%,
+  25% {
+    opacity: 0;
+  }
+  30%,
+  50% {
+    opacity: 1;
+  }
+  55%,
+  100% {
+    opacity: 0;
+  }
+}
+
+.ojo-cerrado {
+  animation: ojoCerrado 4s infinite steps(1);
+}
+
+/* Animación ojo abierto */
+@keyframes ojoAbierto {
+  0%,
+  25% {
+    opacity: 1;
+  }
+  30%,
+  50% {
+    opacity: 0;
+  }
+  55%,
+  100% {
+    opacity: 1;
+  }
+}
+
+.ojo-abierto {
+  animation: ojoAbierto 4s infinite steps(1);
+}
+
+/* GATO */
+
+/* se dibujan los bigotes cuando carga la página */
+
+@keyframes dibujar {
+  0% {
+    stroke-dasharray: 500;
+    stroke-dashoffset: 500;
+  }
+  100% {
+    stroke-dasharray: 500;
+    stroke-dashoffset: 0;
+  }
+}
+
+/* Aplicamos el efecto a los bigotes */
+.bigotes {
+  stroke: black;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-dasharray: 500;
+  stroke-dashoffset: 500;
+  animation: dibujar 2s ease forwards;
+}
+
+/* MOVIMIENTO ARRIBA Y ABAJO */
+@keyframes flotando {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-15px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+/* Aplicamos la animación al contenedor */
+.mascota {
+  animation: flotando 2s infinite ease-in-out;
+}
+
+.mascota:nth-child(2) {
+  animation-delay: 0.5s;
+}
+
+.mascota:nth-child(3) {
+  animation-delay: 1s;
+}
+
+/* DIBUJAR BORDE DEL GATO CONTINUAMENTE */
+
+@keyframes dibujarBorde {
+  0% {
+    stroke-dasharray: 1000;
+    stroke-dashoffset: 1000;
+  }
+  100% {
+    stroke-dasharray: 1000;
+    stroke-dashoffset: 0;
+  }
+}
+
+/* Aplicamos el efecto de dibujo al borde del gato */
+.borde-gato {
+  stroke: black;
+  stroke-width: 4;
+  fill: none;
+  stroke-linecap: round;
+  animation: dibujarBorde 3s linear infinite;
+}
+
+/* ERIZO */
+
+@keyframes giro-derecha {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes giro-izquierda {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(-360deg);
+  }
+}
+
+/* Aplica la animación a las astillas */
+.astilla-1,
+.astilla-2 {
+  transform-origin: center; /* Define el centro de rotación */
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+.astilla-1 {
+  animation-name: giro-derecha;
+  animation-duration: 15s;
+}
+
+.astilla-2 {
+  animation-name: giro-izquierda;
+  animation-duration: 30s;
+}
